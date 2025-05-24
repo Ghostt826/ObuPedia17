@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Império das Duas Espadas - ObuPédia</title>
+    <link rel="icon" href="obu_ico.png" type="image/x-icon">
+    <style>
+        :root {
+            --cor-primaria: #2a4b8d;
+            --cor-secundaria: #3a6ea5;
+            --cor-texto: #222;
+            --cor-fundo: #f8f9fa;
+            --cor-borda: #a2a9b1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Liberation Sans', 'Nimbus Sans L', Arial, sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+        }
+        
+        .search-box {
+            text-align: center;
+            margin: 1.5em 0;
+            padding: 0.5em;
+        }
+        
+        .search-box input {
+            padding: 0.75em;
+            width: 65%;
+            max-width: 550px;
+            font-size: 1.05em;
+            border: 1px solid var(--cor-borda);
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            padding: 0.75em 1.5em;
+            font-size: 1.05em;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--cor-secundaria);
+        }
+        
+        header {
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+        }
+        
+        h1 {
+            font-size: 1.9em;
+            margin: 0.5em 0 0.3em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.3em;
+            color: #000;
+            font-weight: 400;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.25em;
+            margin: 1.5em 0 0.8em;
+            font-weight: 500;
+        }
+        
+        h3 {
+            font-size: 1.25em;
+            margin: 1.2em 0 0.5em;
+        }
+        
+        .infobox {
+            float: right;
+            clear: right;
+            margin: 0.5em 0 1.5em 1.5em;
+            padding: 0.3em;
+            border: 1px solid var(--cor-borda);
+            background-color: #f8f9fa;
+            font-size: 90%;
+            line-height: 1.5;
+            width: 300px;
+            border-collapse: collapse;
+        }
+        
+        .infobox caption {
+            font-size: 1.25em;
+            font-weight: bold;
+            padding: 0.4em;
+            text-align: center;
+            background-color: #eaf3ff;
+        }
+        
+        .infobox th, .infobox td {
+            vertical-align: top;
+            padding: 0.4em 0.6em;
+            border: 1px solid #ddd;
+        }
+        
+        .infobox th {
+            text-align: left;
+            width: 40%;
+            background-color: #f1f1f1;
+        }
+        
+        .infobox-image {
+            text-align: center;
+            padding: 0.8em;
+        }
+        
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .bandeira {
+            width: 100%;
+            max-width: 280px;
+            border: 1px solid var(--cor-borda);
+        }
+        
+        .toc {
+            display: table;
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 0.8em 1.2em;
+            margin: 1em 0 1em 1.5em;
+            float: right;
+            clear: right;
+            width: 22em;
+        }
+        
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 1.2em;
+            margin: 0.4em 0;
+        }
+        
+        .toc ul ul {
+            padding-left: 1.8em;
+        }
+        
+        .toc li {
+            margin: 0.4em 0;
+            line-height: 1.4;
+        }
+
+        a       {
+            text-decoration: none;
+            color: var(--cor-primaria); /* Mantendo a cor consistente */
+            }
+        
+        .breadcrumb {
+            margin-bottom: 1.2em;
+            font-size: 0.92em;
+            color: #54595d;
+            padding: 0.3em 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        p {
+            margin: 0.5em 0 1em;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        
+        ul, ol {
+            margin: 0.5em 0 1.5em;
+            padding-left: 2em;
+        }
+        
+        li {
+            margin-bottom: 0.4em;
+        }
+        
+        /* Estilos para as referências */
+        #referencias {
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 1px solid var(--cor-borda);
+        }
+        
+        .references {
+            font-size: 90%;
+            column-count: 2;
+            column-gap: 2.5em;
+            margin-top: 1em;
+        }
+        
+        .references h3 {
+            font-size: 1.1em;
+            margin: 1em 0 0.5em;
+            column-span: all;
+        }
+        
+        .references li {
+            break-inside: avoid;
+            margin-bottom: 0.7em;
+            padding-right: 1em;
+        }
+        
+        .mw-cite-backlink {
+            font-weight: bold;
+            margin-right: 0.3em;
+            font-size: 0.9em;
+        }
+        
+        .reference-text {
+            vertical-align: top;
+        }
+        
+        sup.reference {
+            font-size: 85%;
+            line-height: 1;
+        }
+        
+        /* Cards de economia */
+        .economy-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2em;
+            margin: 1.5em 0;
+        }
+        
+        .economy-card {
+            flex: 1 1 250px;
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 1.2em;
+            border-radius: 4px;
+        }
+        
+        .economy-card h3 {
+            margin-top: 0;
+            color: var(--cor-primaria);
+            font-size: 1.1em;
+        }
+        
+        .economy-card p {
+            margin: 0.5em 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .infobox, .toc {
+                float: none;
+                width: auto;
+                margin: 1em 0;
+            }
+            
+            .references {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <form id="searchForm" action="search.html" method="get">
+                <input type="text" name="q" placeholder="Pesquisar na ObuPédia..." required>
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> › <a href="search.html?q=Império das Duas Espadas">Resultados para "Império das Duas Espadas"</a> › Império das Duas Espadas
+        </div>
+
+        <header>
+            <h1>Império das Duas Espadas</h1>
+        </header>
+
+        <aside class="infobox">
+            <table>
+                <caption>Império das Duas Espadas</caption>
+                <tbody>
+            <tr>
+                <td style="text-align: center; width: 50%; border-right: 1px solid #eaecef;">
+                    <img src="Imperio_duas_espadas.png" alt="Bandeira do Impéria das Duas Espadas" style="width:100%; max-width:150px; border:1px solid #a2a9b1;">
+                    <div style="font-size:0.9em; padding-top:0.3em;">Bandeira nacional</div>
+                </td>
+                <td style="text-align: center; width: 40%;">
+                    <img src="imperio_duas_espadas_brasao.png" alt="Brasão do Impéria das Duas Espadas" style="width:100%; max-width:120px;">
+                    <div style="font-size:0.9em; padding-top:0.3em;">Brasão nacional</div>
+                </td>
+                    <tr>
+                        <th>Lema:</th>
+                        <td><i>"Grandeza em prol do País"</i></td>
+                    </tr>
+                    <tr>
+                        <th>Hino:</th>
+                        <td><i>"Hino Nacional Duas Espadas "</i></td>
+                    </tr>
+                    <tr>
+                        <th>Capital:</th>
+                        <td>Escovia</td>
+                    </tr>
+                    <tr>
+                        <th>Maior cidade:</th>
+                        <td>Escovia</td>
+                    </tr>
+                    <tr>
+                        <th>Línguas oficiais:</th>
+                        <td>Espadan (LE)</td>
+                    </tr>
+                    <tr>
+                        <th>Religião:</th>
+                        <td>97,06% Protestante <br>  2,03% Catolicismo <br>  1,91% Sem Religião<br>(censo 2024)</td>
+                    </tr>
+                    <tr>
+                        <th>Gentílico:</th>
+                        <td>Espadan</td>
+                    </tr>
+                    <tr>
+                        <th>Governo:</th>
+                        <td>Monarquia constitucional imperial</td>
+                    </tr>
+                    <tr>
+                        <th>Imperador:</th>
+                        <td>Aleatório</td>
+                    </tr>
+                    <tr>
+                        <th>Área total:</th>
+                        <td>370 000 000 km²</td>
+                    </tr>
+                    <tr>
+                        <th>População:</th>
+                        <td>11 789 000 hab. (censo 2024)</td>
+                    </tr>
+                    <tr>
+                        <th>PIB total:</th>
+                        <td>US$ 1,2 trilhão</td>
+                    </tr>
+                    <tr>
+                        <th>PIB per capita:</th>
+                        <td>US$ 101 789</td>
+                    </tr>
+                    <tr>
+                        <th>Moeda:</th>
+                        <td>Rean Espada (REE$)</td>
+                    </tr>
+                    <tr>
+                        <th>Fuso horário:</th>
+                        <td>UTC+3 • UTC+4 • UTC+5 • UTC+6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </aside>
+
+        <nav class="toc">
+            <div class="toc-title">Conteúdo</div>
+            <ul>
+                <li><a href="#historia">1 História</a>
+                    <ul>
+                        <li><a href="#1000">1.1 Descobrimento</a></li>
+                        <li><a href="#1030">1.2 A Grande Guerra</a></li>
+                        <li><a href="#1183">1.3 Proclamação do Império</a></li>
+                        <li><a href="#1231">1.4 Nova revendicação</a></li>
+                        <li><a href="#1240">1.5 Grandes Revoltas</a></li>
+                        <li><a href="#1249">1.6 Inovação Espadans</a></li>
+                        <li><a href="#1250">1.7 Dia do Terror</a></li>
+                        <li><a href="#1322">1.8 Época de Ouro</a></li>
+                        <li><a href="#1400">1.9 Choque de Terra</a></li>
+                        <li><a href="#1409">1.10 Rebelião pós Traumática</a></li>
+                        <li><a href="#1500">1.11 As Grandes Naveganias</a></li>
+                        <li><a href="#1850">1.12 Aliança do Cruzeiro</a></li>
+                        <li><a href="#1859">1.13 Dia da Vitória</a></li>
+                        <li><a href="#1940">1.14 Agora é Nossa Vez</a></li>
+                        <li><a href="#1959">1.15 Militarismo</a></li>
+                        <li><a href="#1980">1.16 Fim do Militarismo</a></li>
+                        <li><a href="#2025">1.17 Operação Selvagem</a></li>
+                    </ul>
+                </li>
+                <li><a href="#geografia">2 Geografia</a></li>
+                <li><a href="#politica">3 Política</a></li>
+                <li><a href="#economia">4 Economia</a></li>
+                <li><a href="#cultura">5 Cultura</a></li>
+                <li><a href="#referencias">6 Referências</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <p>O <b>Império Duas Espadas</b> foi uma poderosa nação que se estendia pela Europa e pela Ásia, fundada no ano 1000. Ao longo de sua história, enfrentou inúmeros desafios, como ameaças de anexação, imposição de pesados tributos e até tentativas de transformá-lo em um estado fantoche. No entanto, o Império conseguiu superar essas adversidades e consolidar sua soberania. <p>Entre seus principais aliados estavam <b><a href="mentavia.html">Mentavia</a></b> e o <b>Império Kivina</b>, que desempenharam papéis fundamentais no fortalecimento e na estabilidade do Império Duas Espadas. Ao longo dos séculos, a nação se envolveu em diversos conflitos, tanto armados quanto diplomáticos. <p>No ano de 1800, o Império atingiu seu auge, tornando-se uma das maiores potências imperiais da época, com vastas expansões territoriais e grande influência naval.</p>
+        </section>
+
+        <section id="historia">
+            <h2>História</h2>
+            <h3 id="1000">O Descobrimento (Século X)</h3>
+            <p>A tribo <b><a href="yeda.html">Yeda</a></b> vivia em paz até que, certo dia, um jovem indígena chamado Aleatório — um membro comum da tribo — encontrou a lendária Espada Cristal. Segundo os anciãos, essa era a arma mais poderosa de todo o mundo. <p>Aleatório levou a espada ao líder da tribo, que reconheceu seu poder e declarou que, com ela, poderiam derrotar até as maiores tribos inimigas. Como recompensa, nomeou Aleatório seu vice-líder. <p>Com a morte do líder, Aleatório assumiu o comando da tribo e decidiu fundar o temido <b>Império da Espada.</b></p>
+            <h3 id="1030">A Grande Guerra: A Invasão Mongólia (1030)</h3>
+            <p>O poderoso Império da Mongólia lançou uma invasão contra o Império da Espada, dando início a uma guerra devastadora entre os dois impérios. Apesar de seu exército ser pequeno, o Império da Espada conseguiu resistir bravamente, utilizando o profundo conhecimento de suas próprias terras como vantagem estratégica.</p>
+            <h3 id="1183">A Proclamação do Império (1183)</h3>
+            <p>Após anos de conflito, o Império da Mongólia finalmente conquista o território do Império da Espada. Gêngis, o comandante responsável pela conquista, morre algum tempo depois por causas naturais. Com sua morte, o povo Yeda inicia uma revolução bem-sucedida e reconquista sua independência. <p>Sob a liderança de Glauber II, os Yedas iniciam um período de reconstrução e progresso. Cidades como Dois Montes, Cacaulândia, Mandas e a capital, Critala, passam por grandes melhorias e prosperam como símbolo do renascimento do império.</p>
+            <h3 id="1231">A Nova Reivindicação: O Nascimento do Império das Duas Espadas (1231)</h3>
+            <p>Durante uma expedição, Glauber II descobre uma segunda espada lendária: a Espada Ouro Cinza, há muito considerada perdida. Com essa descoberta, um novo símbolo de poder surge entre os Yedas. Em homenagem às duas relíquias sagradas agora sob seu domínio, Glauber II decide rebatizar sua nação como <b>Império das Duas Espadas.</b></p>
+            <h3 id="1240">Grandes Revoltas: A Insurreição do Norte (1240)</h3>
+            <p>Uma grande revolta irrompe no norte do país, impulsionada pela insatisfação popular com o governo de Glauber II. O conflito se intensifica, mergulhando o império em uma batalha sangrenta. Apesar da força dos revoltosos, a vitória permanece com o governo. Os líderes da rebelião são capturados e executados publicamente na Praça da Liberdade, marcando o fim brutal da insurreição.</p>
+            <h3 id="1249">Inovação Espadana: A Era de Daniel I (1249)</h3>
+            <p>Com a morte de Glauber II em decorrência de uma doença, seu sucessor, Daniel I, assume o trono do Império das Duas Espadas. Determinado a promover o progresso, Daniel inicia um novo capítulo na história do império ao fortalecer as relações diplomáticas com Portugal e a Inglaterra, visando impulsionar o desenvolvimento econômico e tecnológico da nação.</p>
+            <h3 id="1250">O Dia do Terror: A Queda de Daniel I e a Ascensão de Antônio II (1250)</h3>
+            <p>Em um momento decisivo, Daniel I ordena a invasão da região de Kivina, reduto de antigos revolucionários. A batalha, travada no norte do país, se estende por dias e termina em uma derrota humilhante para o Império das Duas Espadas. Indignados com o comando desastroso, soldados espadans se rebelam e executam Daniel I. <p>Com apenas 18 anos, Antônio II assume o trono em meio ao caos. Apesar da juventude, seu governo marca uma virada histórica. Ele promove a liberdade do povo, investe fortemente na educação e conquista a admiração do império. Em 1320, Antônio II funda o <b>Banco Central do Ocidente</b>, símbolo da nova ordem econômica. <p>Para reparar os danos da guerra, ele paga uma indenização ao povo de Kivina e moderniza o exército, equipando os soldados com armas e espadas mais eficientes. Seu reinado é lembrado como um dos mais justos e inovadores da história do império.</p>
+            <h3 id="1322">A Era de Ouro de Antônio II: Conquistas, Guerras e Glória Imperial (1322)</h3>
+            <p>Durante o que ficou conhecido como a sua "época de ouro", Antônio II liderou a anexação de Kostava, então um país independente, que deixou de existir após ser totalmente incorporado ao Império das Duas Espadas. Sem dar sinais de recuo, o imperador lançou uma ofensiva militar contra o poderoso Império Russo, que acabou perdendo parte de seus territórios. <p>Em seguida, Antônio II ordenou a invasão das Ilhas dos Palmares Britânicos, provocando a entrada do Reino Unido na guerra contra o Império das Duas Espadas. Com um ataque devastador à marinha britânica, o império de Antônio saiu vitorioso, consolidando sua supremacia militar e expandindo significativamente suas fronteiras.</p>
+            <h3 id="1400">Choque de Terra: A Queda do Império das Duas Espadas (Século XIV)</h3>
+            <p>Esse período ficou marcado pelo Conflito de Monte Negro, uma tensão crescente entre o Império das Duas Espadas e o Império Russo, alimentada por disputas e ressentimentos de guerras passadas. Na época, o Império das Duas Espadas atravessava uma fase de enfraquecimento militar, fato que não passou despercebido pelos russos. <p>Ao perceberem a vulnerabilidade de seu antigo inimigo, as forças russas lançaram um ataque decisivo. Apesar da resistência corajosa do Império das Duas Espadas, suas tropas não conseguiram conter o avanço russo. Ao fim do conflito, o outrora poderoso império foi totalmente anexado pelo Império da Rússia, encerrando assim uma era de sua história.</p>
+            <h3 id="1409">Rebelião Pós-Traumática: O Levante Pela Reconquista (1409)</h3>
+            <p>Após a anexação pelo Império Russo, o antigo Império das Duas Espadas ressurgiu por meio de uma rebelião simultânea ao sul e ao norte, liderada pelo Barão Branco e pelo Marechal Costa. Esse levante, marcado por forte espírito de resistência e organização militar, foi decisivo para enfraquecer o domínio russo sobre os territórios conquistados. <p>A rebelião se tornou peça-chave na chamada "desanexação russa", forçando o Império Russo a recuar e cedendo parte dos territórios anteriormente incorporados. Assim, o movimento liderado por figuras icônicas reacendeu a esperança de reconstrução do Império das Duas Espadas.</p>
+            <h3 id="1500">As Grandes Naveganças: Expansão, Acordos e Conflitos Globais (Século XV)</h3>
+            <p>O período conhecido como As Grandes Naveganças marcou uma era de intensa exploração marítima promovida pelo Império das Duas Espadas, cujas frotas alcançaram as Américas, a África, a Ásia e a Oceania. Durante esse período de expansão diplomática e comercial, o império firmou importantes acordos com a Grã-Bretanha e a França, garantindo controle sobre territórios estratégicos no Ocidente Asiático. <p>Outro marco significativo foi o tratado com o Reino Mewânico, no qual o Império das Duas Espadas cedeu voluntariamente parte de seus territórios, fortalecendo os laços diplomáticos com os mewânicos. <p>Entretanto, nem tudo se deu de forma pacífica: o Império das Duas Espadas manteve constantes disputas com o Império Kivina, seu tradicional rival, em uma série de conflitos e tensões que moldaram a geopolítica da época.</p>
+            <h3 id="1850">A Aliança do Cruzeiro: O Conflito das Grandes Potências (1850)</h3>
+            <p>Em meio a crescentes tensões geopolíticas, o Império das Duas Espadas se viu em disputa direta com a Grã-Austlátia. O estopim do conflito ocorreu quando navios pertencentes ao Império Kivina foram atacados por forças austlátias, gerando confusão e hostilidade entre as nações envolvidas. O incidente rapidamente evoluiu para uma guerra regional. <p>Como resposta, a Grã-Austlátia formou a Aliança do Ocidente, composta por três potências principais: Grã-Austlátia, República Taiga e Francla. Diante dessa nova ameaça, Kivina e o Império das Duas Espadas uniram forças, dando origem à Aliança do Cruzeiro, uma coalizão militar e diplomática voltada para conter o avanço ocidental. <p>Em 1852, o Grã-Império Mentávico forneceu apoio bélico à Aliança do Cruzeiro e, no ano seguinte, entrou oficialmente no conflito, consolidando assim a aliança como uma das mais influentes do cenário internacional da época.</p>
+            <h3 id="1859">O Dia da Vitória: O Triunfo da Aliança do Cruzeiro (1859)</h3>
+            <p>Após anos de intensos combates e instabilidade geopolítica, a Aliança do Cruzeiro — formada por Kivina, o Império das Duas Espadas e o Grã-Império Mentávico — finalmente conquistou a vitória decisiva contra a Aliança do Ocidente. Com o colapso militar da Grã-Austlátia e a rendição das forças de Francla e da República Taiga, os conflitos que assolaram a região chegaram ao fim. <p>Esse momento histórico ficou conhecido como o Dia da Vitória, símbolo do fim da guerra e da consolidação da influência da Aliança do Cruzeiro sobre vastas áreas geográficas. Foi também o marco de uma nova ordem política e diplomática no cenário internacional.</p>
+            <h3 id="1940">Agora é Nossa Vez: O Império das Duas Espadas na Segunda Guerra Mundial (1940)</h3>
+            <p>Com o avanço das forças do Eixo e a escalada global do conflito, o Império das Duas Espadas decidiu tomar partido. Em um pronunciamento histórico, sua liderança declarou apoio aos Aliados, marcando a entrada oficial do império na Segunda Guerra Mundial. <p>A decisão, vista como estratégica e moralmente necessária, reposicionou o Império das Duas Espadas no cenário internacional. Com suas forças militares experientes e sua marinha já testada em conflitos anteriores, o império contribuiu significativamente para operações nos teatros europeu, africano e asiático, reforçando o esforço aliado rumo à vitória.</p>
+            <h3 id="1959">Militarismo: A Era da Ditadura no Império das Duas Espadas (1959)</h3>Após os eventos da Segunda Guerra Mundial, o Império das Duas Espadas mergulhou em um período conturbado, marcado pelo avanço do militarismo e o estabelecimento de uma ditadura militar. Generais tomaram o controle do governo, instaurando um regime autoritário que prometia ordem e estabilidade, mas que logo enfrentaria sérios desafios internos e externos. <p>Durante essa era, o império enfrentou crises econômicas, revoltas populares e tensões diplomáticas com antigos aliados. A centralização do poder nas mãos das forças armadas gerou repressão, censura e uma dura perseguição a opositores, consolidando um dos períodos mais sombrios de sua história moderna.</p>
+            <h3 id="1980">O Fim do Militarismo: A Queda da Ditadura Espadana (1980)</h3>
+            <p>Após anos de regime autoritário, o Império das Duas Espadas viveu um momento decisivo: o colapso da ditadura militar. Pressionado por protestos populares, crises econômicas e movimentos democráticos crescentes, o regime foi oficialmente dissolvido em um evento que ficou conhecido como o <p>Cancelamento da Ditadura Militar Espadana</b>. <p>A queda do governo militar marcou o retorno da liberdade política e abriu caminho para a reconstrução institucional do império. Uma nova era democrática teve início, com a criação de uma constituição mais representativa, eleições livres e o restabelecimento dos direitos civis. Foi um ponto de virada na história do império — o momento em que o povo retomou o controle de seu destino.</p>
+            <h3 id="2025">Operação Selvagem e a Fundação da UEC: Segurança e Cooperação Econômica (2025)</h3>
+            <p>Em um momento de instabilidade nacional, o Império das Duas Espadas lançou a <b>Operação Selvagem</b>, uma ofensiva militar cujo principal objetivo era eliminar grupos terroristas russos que haviam se infiltrado no território imperial. A operação teve papel central na restauração da segurança interna, marcando a determinação do governo em proteger sua soberania. <p>Paralelamente a esse esforço militar, foi fundada a <b>UEC — União Econômica e Comercial</b>, uma aliança formada entre países aliados com o propósito de fortalecer as economias dos membros por meio de investimentos estratégicos, acordos comerciais e intercâmbio de tecnologias, inclusive no setor de armamentos militares. <p>A UEC representou um novo paradigma de cooperação entre nações, unindo crescimento econômico à segurança coletiva. Para o Império das Duas Espadas, foi uma oportunidade de reconstrução e influência regional após o turbulento período do militarismo.</p>
+
+        <section id="geografia">
+            <h2>Geografia</h2>
+            <ul>
+                <li><b>Montanhas:</b> A Montanha mais alta do Império Duas Espadas fica localizada na província de Dois Montes (Altitude: 3.001m)</li>
+                <li><b>Biomas:</b> Os principais Biomas do Império são: Campos, Floresta Têmpera, Deserto e Taiga.</li>
+            </ul>
+        </section>
+
+        <section id="politica">
+            <h2>Governo e Política</h2>
+            <h3>Monarquia constitucional imperial</h3>
+            <p>Dividido em três poderes:</p>
+            <ul>
+                <li><b>Rei:</b> Poder político, Religioso, Jurídico e Militar</li>
+                <li><b>Senado:</b> Conselho de Anciãos (Aristocratas-Patricios) que fiscalizam o rei e elaboram as leis.</li>
+                <li><b>Assembleia:</b> Cidadãdos que votam nas leis criadas pelo senado.</li>
+            </ul>
+            <p>O império é divido em 13 províncias.</p>
+        </section>
+
+        <section id="economia">
+            <h2>Economia</h2>
+            <p>Principais setores econômicos:</p>
+            <div class="economy-cards">
+                <div class="economy-card">
+                    <h3>Tecnologia</h3>
+                    <p>39% do PIB<br>Setores de Polos industriais<br>Inovações</p>
+                </div>
+                <div class="economy-card">
+                    <h3>Indústria</h3>
+                    <p>40% do PIB<br>Naval e Terrestres<br>Setor Primário • Setor Secundário • Setor Terciário</p>
+                </div>
+                <div class="economy-card">
+                    <h3>Turismo</h3>
+                    <p>22% do PIB<br>Rios Bulgarianias Nascentes<br>Turismo Local e Cultural</p>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.querySelector('input[name="q"]').value;
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            });
+        </script>
+    </div>
+</body>
+</html>

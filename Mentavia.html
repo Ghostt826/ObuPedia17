@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentavia - ObuPédia</title>
+    <link rel="icon" href="obu_ico.png" type="image/x-icon">
+    <style>
+        :root {
+            --cor-primaria: #2a4b8d;
+            --cor-secundaria: #3a6ea5;
+            --cor-texto: #222;
+            --cor-fundo: #f8f9fa;
+            --cor-borda: #a2a9b1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Liberation Sans', 'Nimbus Sans L', Arial, sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+        }
+        
+        .search-box {
+            text-align: center;
+            margin: 1.5em 0;
+            padding: 0.5em;
+        }
+        
+        .search-box input {
+            padding: 0.75em;
+            width: 65%;
+            max-width: 550px;
+            font-size: 1.05em;
+            border: 1px solid var(--cor-borda);
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            padding: 0.75em 1.5em;
+            font-size: 1.05em;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--cor-secundaria);
+        }
+        
+        header {
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+        }
+        
+        h1 {
+            font-size: 1.9em;
+            margin: 0.5em 0 0.3em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.3em;
+            color: #000;
+            font-weight: 400;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.25em;
+            margin: 1.5em 0 0.8em;
+            font-weight: 500;
+        }
+        
+        h3 {
+            font-size: 1.25em;
+            margin: 1.2em 0 0.5em;
+        }
+        
+        .infobox {
+            float: right;
+            clear: right;
+            margin: 0.5em 0 1em 1em;
+            padding: 0.2em;
+            border: 1px solid var(--cor-borda);
+            background-color: #f8f9fa;
+            font-size: 88%;
+            line-height: 1.5;
+            width: 320px;
+            border-collapse: collapse;
+        }
+        
+        .infobox caption {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 0.2em;
+            text-align: center;
+            background-color: #eaf3ff;
+        }
+        
+        .infobox th, .infobox td {
+            vertical-align: top;
+            padding: 0.4em 0.6em;
+            border: 1px solid #ddd;
+        }
+        
+        .infobox th {
+            text-align: left;
+            width: 40%;
+            background-color: #f1f1f1;
+        }
+        
+        .infobox-image {
+            text-align: center;
+            padding: 0.8em;
+        }
+        
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mapa {
+            max-width: 300px;
+            border: 2px solid var(--cor-borda);
+        }
+        
+        .bandeira {
+            width: 100%;
+            max-width: 280px;
+            border: 1px solid var(--cor-borda);
+        }
+        a       {
+            text-decoration: none;
+            color: var(--cor-primaria); /* Mantendo a cor consistente */
+            }
+
+        a:hover {
+            text-decoration: none; /* Remove sublinhado no hover */
+            opacity: 0.9; /* Efeito visual alternativo */
+            }
+        .toc {
+            display: table;
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 0.8em 1.2em;
+            margin: 1em 0 1em 1.5em;
+            float: right;
+            clear: right;
+            width: 22em;
+        }
+        
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 1.2em;
+            margin: 0.4em 0;
+        }
+        
+        .toc ul ul {
+            padding-left: 1.8em;
+        }
+        
+        .toc li {
+            margin: 0.4em 0;
+            line-height: 1.4;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 1.2em;
+            font-size: 0.92em;
+            color: #54595d;
+            padding: 0.3em 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        p {
+            margin: 0.5em 0 1em;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        
+        ul, ol {
+            margin: 0.5em 0 1.5em;
+            padding-left: 2em;
+        }
+        
+        li {
+            margin-bottom: 0.4em;
+        }
+        
+        /* Estilos para as referências */
+        #referencias {
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 1px solid var(--cor-borda);
+        }
+        
+        .references {
+            font-size: 90%;
+            column-count: 2;
+            column-gap: 2.5em;
+            margin-top: 1em;
+        }
+        
+        .references h3 {
+            font-size: 1.1em;
+            margin: 1em 0 0.5em;
+            column-span: all;
+        }
+        
+        .references li {
+            break-inside: avoid;
+            margin-bottom: 0.7em;
+            padding-right: 1em;
+        }
+        
+        .mw-cite-backlink {
+            font-weight: bold;
+            margin-right: 0.3em;
+            font-size: 0.9em;
+        }
+        
+        .reference-text {
+            vertical-align: top;
+        }
+        
+        sup.reference {
+            font-size: 85%;
+            line-height: 1;
+        }
+        
+        /* Cards de economia */
+        .economy-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2em;
+            margin: 1.5em 0;
+        }
+        
+        .economy-card {
+            flex: 1 1 250px;
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 1.2em;
+            border-radius: 4px;
+        }
+        
+        .economy-card h3 {
+            margin-top: 0;
+            color: var(--cor-primaria);
+            font-size: 1.1em;
+        }
+        
+        .economy-card p {
+            margin: 0.5em 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .infobox, .toc {
+                float: none;
+                width: auto;
+                margin: 1em 0;
+            }
+            
+            .references {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <form id="searchForm" action="search.html" method="get">
+                <input type="text" name="q" placeholder="Pesquisar na ObuPédia..." required>
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> › <a href="search.html?q=Mentavia">Resultados para "Mentavia"</a> › Mentavia
+        </div>
+
+        <header>
+            <h1>Mentavia</h1>
+        </header>
+
+        <aside class="infobox">
+            <table>
+                <caption>República de Mentavia</caption>
+                <tbody>
+            <tr>
+                <td style="text-align: center; width: 50%; border-right: 1px solid #eaecef;">
+                    <img src="Mentavia_Flag.png" alt="Bandeira de Mentavia" style="width:100%; max-width:150px; border:1px solid #a2a9b1;">
+                    <div style="font-size:0.9em; padding-top:0.3em;"><a href="Bandeira_de_Mentavia.html">Bandeira nacional</a></div>
+                </td>
+                <td style="text-align: center; width: 40%;">
+                    <img src="Mentavia_COA.png" alt="Brasão de Mentavia" style="width:100%; max-width:120px;">
+                    <div style="font-size:0.9em; padding-top:0.3em;">Brasão nacional</div>
+                </td>
+            </tr>
+                    <tr>
+                        <td colspan="2" class="infobox-image">
+                            <img src="Mentavia_location_map.png" alt="mapa" class="mapa">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Lema:</th>
+                        <td><i>"A Igualdade de uma Nação"</i></td>
+                    </tr>
+                    <tr>
+                        <th>Hino nacional:</th>
+                        <td><i>"A Revolta do Sucesso"</i></td>
+                    </tr>
+                    <tr>
+                        <th>Capital:</th>
+                        <td>Monto Vijhen</td>
+                    </tr>
+                    <tr>
+                        <th>Maior cidade:</th>
+                        <td>Monte Vijhen</td>
+                    </tr>
+                    <tr>
+                        <th>Línguas oficiais:</th>
+                        <td>Mentávico (ME)</td>
+                    </tr>
+                    <tr>
+                        <th>Religião:</th>
+                        <td>98,02% Catolicismo <br>02,98% Sem religião <br>(censo 2024)</td>
+                    </tr>
+                    <tr>
+                        <th>Gentílico:</th>
+                        <td>Mentaviano</td>
+                    </tr>
+                    <tr>
+                        <th>Governo:</th>
+                        <td>República federativa</td>
+                    </tr>
+                    <tr>
+                        <th>Presidente:</th>
+                        <td>San Natan (desde 2014)</td>
+                    </tr>
+                    <tr>
+                        <th>Vice-Presidente:</th>
+                        <td>Não encontrado..</td>
+                    </tr>
+                    <tr>
+                        <th>Área:</th>
+                        <td>≈6 249 214,51 km²</td>
+                    </tr>
+                    <tr>
+                        <th>População:</th>
+                        <td>231 138 017 hab. (censo 2024)</td>
+                    </tr>
+                    <tr>
+                        <th>PIB total:</th>
+                        <td>US$ 2,31 trilhões</td>
+                    </tr>
+                    <tr>
+                        <th>PIB per capita:</th>
+                        <td>US$ 9 993</td>
+                    </tr>
+                    <tr>
+                        <th>IDH:</th>
+                        <td>0,789 – alto (censo 2024)</td>
+                    </tr>
+                    <tr>
+                        <th>Moeda:</th>
+                        <td>Réis Mentaviano (RM)</td>
+                    </tr>
+                    <tr>
+                        <th>Fuso horário:</th>
+                        <td>UTC-1 • UTC±0 • UTC+1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </aside>
+
+        <nav class="toc">
+            <div class="toc-title">Conteúdo</div>
+            <ul>
+                <li><a href="#historia">1 História</a>
+                    <ul>
+                        <li><a href="#revolucao">1.1 Revolução Mewânica</a></li>
+                    </ul>
+                </li>
+                <li><a href="#geografia">2 Geografia</a></li>
+                <li><a href="#politica">3 Política</a></li>
+                <li><a href="#economia">4 Economia</a></li>
+                <li><a href="#referencias">5 Referências</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <p><b>Mentavia</b>, oficialmente <b>República Federativa de Mentavia</b>, é o maior país da África, sendo o sétimo maior do mundo em área territorial, com cerca de 6,23 milhões<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> de quilômetros quadrados.</p>
+        </section>
+
+        <section id="historia">
+            <h2>História</h2>
+            <h3 id="revolucao">O Surgimento do Império Mewânico</h3>
+            <p>No início do século X, na região ocidental da África, havia um império conhecido como <b>Império Laimaaki</b>. Reconhecido como uma das grandes nações da época, Laimaaki destacava-se tanto por suas vantagens quanto por suas desvantagens. Entre os principais desafios enfrentados pelo império estava o baixo desenvolvimento humano, refletido em um Índice de Desenvolvimento Humano (IDH) precário, o que resultava em atrasos sociais e econômicos. <p>Guerra era um fenômeno comum no Império Laimaaki. Conflitos internos e externos eram constantes, e o governo raramente demonstrava preocupação com as frequentes quedas e instabilidades que abalavam a estrutura do país. <p>O império era dividido em cinco grandes regiões: <b>Laki-Do-Oeste, Parkhis-Do-Norte, Gangar, Jorman do Sul</b> e <b>Cidade-Thineró</b>. Em uma dessas divisões, formou-se um grupo de aproximadamente 15 mil pessoas que se opunham ao declínio do império. Como reação à decadência e ao abandono estatal, esse grupo começou a se organizar com o objetivo de iniciar uma revolta e proclamar uma nova nação, onde os antigos valores e a importância do Império Laimaaki fossem apagados por completo. <p>Esse movimento recebeu o nome de <b>Mewânicos</b>, um termo que remete a uma tribo ou comunidade insurgente. <p>Em <b>1002</b>, os Mewânicos iniciaram sua estratégia militar, infiltrando seus soldados em várias regiões do império de maneira discreta. A ordem era clara: caso fossem descobertos, deveriam eliminar o inimigo silenciosamente para não alertar outros soldados. Pouco antes do ataque, o líder Mewânico enviou uma carta ao imperador de Laimaaki, declarando: <p>"Se o governo está tão acostumado com a guerra, mesmo vendo inocentes morrerem sem que o exército intervenha, então faremos algo. Mas não é isso que desejamos. Nós, os Mewânicos, pedimos mais desenvolvimento para a população, pois a riqueza do império pertence somente àqueles que ele escraviza. A escolha é sua, imperador: ou vocês continuam mandando nesta nação, ou nós." <p>O imperador, confuso com a mensagem, respondeu de forma ríspida: <p>"Minha nação, minha decisão. Eu digo não!" <p>Diante da negativa, o líder Mewânico ordenou o início da revolta, que se deu de forma gradual. <p>No ano <b>1003</b>, os Mewânicos haviam eliminado mais de 800 soldados laimaakis. A resistência foi suficiente para chamar a atenção do governo, que imediatamente ordenou contra-ataques. Contudo, com os Mewânicos já espalhados por todo o território, o confronto tornou-se caótico. Tropas imperiais se perdiam, desorientadas, e três divisões — <b>Gangar, Jorman do Sul</b> e <b>Cidade-Thineró</b> — caíram completamente sob o controle rebelde. <p>Em um gesto inusitado, o imperador de Laimaaki, capturado pelos Mewânicos, pediu para conversar diretamente com o líder da revolta. Durante a negociação, o imperador propôs implementar reformas e promover o desenvolvimento nacional em troca da suspensão do conflito. Antes, porém, que ambos selassem o acordo com um aperto de mãos, o imperador foi assassinado com duas flechas — uma na cabeça e outra nas costas. A execução foi ordenada por um soldado Mewânico, movido pela falta de piedade diante das injustiças praticadas pelo antigo regime. <p>No ano <b>1004</b>, com <b>84% das tropas do Império Laimaaki destruídas</b> e seu imperador morto, os laimaakis restantes renderam-se. A vitória foi oficialmente dos Mewânicos, que instauraram uma nova ordem nacional. O líder da revolta foi coroado como <b>imperador</b> e renomeou a nação para <b>Império Mewânico</b>, encerrando assim a era de Laimaaki e dando início a um novo capítulo na história da região.</p>
+        </section>
+
+        <section id="geografia">
+            <h2>Geografia</h2>
+            <p>Mentavia possui uma geografia diversificada:</p>
+            <ul>
+                <li><b>Montanhas:</b> Cordilheira Loma (ponto mais alto: Monte Bintumani – 1.945 m)</li>
+                <li><b>Planícies:</b> Planície da Minitas Verde (inspirada no Vale do Rio Minitas – principal região agrícola)</li>
+                <li><b>Costa:</b> 5.527 km de litoral com importantes portos comerciais</li>
+            </ul>
+        </section>
+
+        <section id="politica">
+            <h2>Governo e Política</h2>
+            <h3>Governo Federal</h3>
+            <p>Dividido em três poderes independentes:</p>
+            <ul>
+                <li><b>Executivo:</b> Presidente (chefe de estado e governo) e Vice-Presidente</li>
+                <li><b>Legislativo:</b> Congresso Federal (Senado e Câmara dos Deputados)</li>
+                <li><b>Judiciário:</b> Suprema Corte Federal (11 ministros)</li>
+            </ul>
+            <p>O país divide-se em 15 distritos administrativos e 2 regiões autônomas (Occitânia Mentaviana e Ilhas do Norte).</p>
+        </section>
+
+        <section id="economia">
+            <h2>Economia</h2>
+            <p>Principais setores econômicos:</p>
+            <div class="economy-cards">
+                <div class="economy-card">
+                    <h3>Tecnologia</h3>
+                    <p>40% do PIB<br>Energias renováveis<br>Parque tecnológico de Porto Livre</p>
+                </div>
+                <div class="economy-card">
+                    <h3>Indústria</h3>
+                    <p>35% do PIB<br>Naval e aeronáutica<br>Biotecnologia</p>
+                </div>
+                <div class="economy-card">
+                    <h3>Turismo</h3>
+                    <p>25% do PIB<br>Ecoturismo nos Montes Azuris<br>Turismo cultural</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="referencias">
+            <h2>Referências</h2>
+            <div class="references">
+                <h3>Notas</h3>
+                <ol class="references">
+                    <li id="cite_note-1"><span class="mw-cite-backlink">↑</span> <span class="reference-text">«Revisão e Exploração da Área Atual 2009» CANM. 16 de Julho de 2019</span></li>
+                    <li id="cite_note-2"><span class="mw-cite-backlink">↑</span> <span class="reference-text">Inclui apenas territórios continentais</span></li>
+                </ol>
+
+                <h3>Fontes</h3>
+                <ol class="references">
+                    <li id="cite_ref-1"><span class="mw-cite-backlink">↑</span> <span class="reference-text">Instituto Federal de Estatística (2023). <i>Anuário Demográfico da Federação</i>. Montelavar: IFE Editorial.</span></li>
+                    <li id="cite_ref-2"><span class="mw-cite-backlink">↑</span> <span class="reference-text">Ministério da Economia (2022). <i>Relatório Econômico Anual</i>. Disponível em: <a href="#">www.economia.mv/relatorio2022</a></span></li>
+                    <li id="cite_ref-3"><span class="mw-cite-backlink">↑</span> <span class="reference-text">Almeida, C. (2021). <i>História da Federação Mentaviana</i>. Editora Universitária.</span></li>
+                </ol>
+            </div>
+        </section>
+
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.querySelector('input[name="q"]').value;
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            });
+        </script>
+    </div>
+</body>
+</html>

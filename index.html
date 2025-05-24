@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="obu_ico.png" type="image/x-icon">
+    <title>ObuPédia - A Pesquisa Local</title>
+    <style>
+        :root {
+            --cor-primaria: #2a4b8d;
+            --cor-secundaria: #3a6ea5;
+            --cor-texto: #222;
+            --cor-fundo: #f8f9fa;
+            --cor-borda: #a2a9b1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Liberation Sans', 'Nimbus Sans L', Arial, sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            font-size: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--cor-primaria); /* Mantendo a cor consistente */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+        }
+        
+        header {
+            text-align: center;
+            padding: 1em 0;
+            border-bottom: 2px solid var(--cor-borda);
+            margin-bottom: 1.5em;
+        }
+        
+        .logo {
+            font-size: 2.8em;
+            font-weight: 400;
+            color: #000;
+            margin: 0.3em 0;
+        }
+        
+        .slogan {
+            font-style: italic;
+            color: #54595d;
+            margin-bottom: 1em;
+            font-size: 1.1em;
+        }
+        
+        .search-box {
+            text-align: center;
+            margin: 2em 0;
+            padding: 0.5em;
+        }
+        
+        .search-box input {
+            padding: 0.75em;
+            width: 65%;
+            max-width: 600px;
+            font-size: 1.1em;
+            border: 1px solid var(--cor-borda);
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            padding: 0.75em 1.5em;
+            font-size: 1.1em;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-left: 0.5em;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--cor-secundaria);
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2em;
+            margin-top: 1em;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .featured-article {
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 1.5em;
+            margin-bottom: 1.5em;
+            border-radius: 3px;
+        }
+        
+        .featured-article h2 {
+            font-size: 1.4em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.3em;
+            margin-top: 0;
+        }
+        
+        .featured-image {
+            float: right;
+            margin: 0 0 1em 1.5em;
+            border: 1px solid var(--cor-borda);
+            padding: 0.3em;
+            background: white;
+            max-width: 40%;
+        }
+        
+        .featured-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .featured-image div {
+            font-size: 0.9em;
+            text-align: center;
+            padding: 0.3em;
+        }
+        
+        .portal-box {
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 1em;
+            margin-bottom: 1.5em;
+            border-radius: 3px;
+        }
+        
+        .portal-title {
+            text-align: center;
+            font-weight: bold;
+            background-color: #eaf3ff;
+            margin: -1em -1em 0.8em -1em;
+            padding: 0.5em;
+            font-size: 1.1em;
+        }
+        
+        .news-item {
+            margin-bottom: 1.2em;
+            padding-bottom: 1em;
+            border-bottom: 1px dotted var(--cor-borda);
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-item h3 {
+            margin: 0.5em 0;
+            font-size: 1.1em;
+        }
+        
+        .did-you-know li {
+            margin-bottom: 0.6em;
+            line-height: 1.5;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 1px solid var(--cor-borda);
+            font-size: 0.9em;
+            color: #54595d;
+        }
+        
+        @media (max-width: 768px) {
+            .featured-image {
+                float: none;
+                margin: 0 auto 1em;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Organização das Bolas Unidas - WIKI</div>
+            <div class="slogan">Olá, seja bem-vindo a ObuPédia! [1.7]</div>
+        </header>
+
+        <div class="search-box">
+            <form id="searchForm" action="search.html" method="get">
+                <input type="text" name="q" placeholder="Pesquisar na ObuPédia..." required>
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="main-content">
+            <div class="column">
+                <div class="featured-article">
+                    <h2>OBU, a Organização das Bolas Unidas</h2>
+                    <div class="featured-image"> <b>GREAT EMPIRE OF PÃO</b>
+                        <div>"Somente espero o dia do evento.."</div>
+                    </div>
+                    <p>Ei, você mesmo! Seja da OBU ou não, junte-se agora ao nosso servidor do Discord — ou convide seus amigos para fazer parte também! <p>Estamos aqui para dar vida a um servidor que parecia abandonado, trazendo movimento, diversão e, principalmente, pessoas online interagindo! <p>Sempre teremos novos eventos, atividades e atrações pensadas para entreter e envolver todo mundo. Tem de tudo um pouco — e cada canto do servidor guarda algo divertido esperando por você! <p>Então, não perca tempo! Entre no servidor pelo link abaixo e venha fazer parte dessa comunidade com a gente:</p>
+                    <p><a href="https://discord.gg/D34QZmuYr4">Visitar o server →</a></p>
+                </div>
+
+                <div>
+                    <h2>Sabia que...</h2>
+                    <ul class="did-you-know">
+                        <li>...Mentavia, depois de virar o novo dono da OBU, ele finalmente podia ativar a função "Exibir membros do cargo separadamente dos membros conectados", ele queria que Corres Balls fazer isso, mas nem tentou?</li>
+                        <li>...Posovik 100% é umas das melhores pessoas até só para administrar um server? Mas ele prefere só ser Mod.</li>
+                        <li>... Um evento sagrado do server vai acontecer novamente?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="column">
+                <div>
+                    <h2>Atualidades</h2>
+                    <div class="news-item">
+                        <h3>RolePlay Sul-Américano</h3>
+                        <p>Dia 12 de Maio, Aleatório o da a sugestão de um novo RP ao server, Mentavia concorda com a ideia o chamando de RP Sul-Américano, portanto a jogatina tá bem dificíl de começar pelo os motivos que haver quase ninguém participando. Segundo o Aleatório o RP vai ser em 1850. Agora vamos falar sobre os participantes:<div>Brasil: Mentavia</div><div>Chile: Puro3g</div><div>Equador: Aletório</div><div>França(Guiana Francesa): Germanic Confederation Ball</div><br><div>Até agora só tem isso, agora Aleatória e Mentavia vão ver se começam o RP em outro dia.</div></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>ObuPédia® - Conteúdo disponível sob licença Creative Commons BY-SA 3.0</p>
+            <p><a href="#">Termos de uso</a> | <a href="#">Política de privacidade</a> | <a href="#">Sobre a ObuPédia</a></p>
+        </footer>
+
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.querySelector('input[name="q"]').value;
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa - ObuPédia</title>
+    <link rel="icon" href="obu_ico.png" type="image/x-icon">
+    <style>
+        :root {
+            --cor-primaria: #2a4b8d;
+            --cor-secundaria: #3a6ea5;
+            --cor-texto: #222;
+            --cor-fundo: #f8f9fa;
+            --cor-borda: #a2a9b1;
+            --tamanho-imagem: 100px;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Liberation Sans', 'Nimbus Sans L', Arial, sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+        }
+        
+        .search-header {
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+        }
+        
+        .search-header h1 {
+            font-size: 1.8em;
+            margin: 0.3em 0;
+            color: #000;
+            font-weight: 400;
+        }
+        
+        .search-box {
+            text-align: center;
+            margin: 1.5em 0;
+        }
+        
+        .search-box input {
+            padding: 0.75em;
+            width: 65%;
+            max-width: 600px;
+            font-size: 1.1em;
+            border: 1px solid var(--cor-borda);
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            padding: 0.75em 1.5em;
+            font-size: 1.1em;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-left: 0.5em;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--cor-secundaria);
+        }
+        
+        .results-count {
+            color: #54595d;
+            margin-bottom: 1.5em;
+            font-size: 0.95em;
+        }
+        
+        .search-result {
+            margin-bottom: 2em;
+            padding-bottom: 1.5em;
+            border-bottom: 1px solid #eaecef;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .search-result-image {
+            flex: 0 0 var(--tamanho-imagem);
+            width: var(--tamanho-imagem);
+            height: var(--tamanho-imagem);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #f1f1f1;
+        }
+        
+        .search-result-image img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .search-result-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        .search-result-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .search-result h3 {
+            margin: 0 0 0.3em 0;
+            font-size: 1.3em;
+            font-weight: 500;
+        }
+        
+        .search-result a {
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+        
+        .search-result a:hover h3 {
+            text-decoration: underline;
+        }
+        
+        .search-result .url {
+            color: #202122;
+            font-size: 0.9em;
+            margin: 0.3em 0;
+            display: block;
+        }
+        
+        .search-result .snippet {
+            color: #54595d;
+            line-height: 1.5;
+            margin-top: 0.5em;
+        }
+        
+        .no-image .search-result-content {
+            margin-left: 0;
+        }
+        
+        .related-searches {
+            margin-top: 2.5em;
+            padding-top: 1.5em;
+            border-top: 1px solid var(--cor-borda);
+        }
+        
+        .related-searches h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.8em;
+        }
+        
+        .related-searches ul {
+            list-style-type: none;
+            padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+        
+        .related-searches li {
+            display: inline-block;
+        }
+        
+        .related-searches a {
+            color: var(--cor-primaria);
+            text-decoration: none;
+            padding: 0.3em 0.6em;
+            background: #f8f9fa;
+            border-radius: 3px;
+            border: 1px solid #c8ccd1;
+        }
+        
+        .related-searches a:hover {
+            background: #eaf3ff;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 3em;
+            padding-top: 1.5em;
+            border-top: 1px solid var(--cor-borda);
+            font-size: 0.9em;
+            color: #54595d;
+        }
+        
+        @media (max-width: 600px) {
+            .search-result {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-result-image {
+                align-self: center;
+            }
+            
+            :root {
+                --tamanho-imagem: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-header">
+            <h1>ObuPédia</h1>
+            <div class="search-box">
+                <form id="searchForm">
+                    <input type="text" name="q" id="searchInput" placeholder="Pesquisar na ObuPédia..." required>
+                    <button type="submit">Pesquisar</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="resultsContainer">
+            <!-- Os resultados serão inseridos aqui pelo JavaScript -->
+        </div>
+
+        <footer>
+            <p>ObuPédia® - Conteúdo disponível sob licença Creative Commons BY-SA 3.0</p>
+            <p><a href="index.html">Voltar à página inicial</a></p>
+        </footer>
+
+        <script>
+            // Banco de dados fictício de artigos com imagens
+            const articles = [
+                {
+                    title: "Mentavia",
+                    image: "Mentavia_Flag.png",
+                    url: "Mentavia.html",
+                    snippet: "Mentavia, oficialmente República Federativa de Mentavia, é o maior país da África...",
+                    keywords: ["mentavia", "república", "áfrica"]
+                },
+                {
+                    title: "Bandeira de Mentavia",
+                    image: "Mentavia_Flag.png",
+                    url: "Bandeira_de_Mentavia.html",
+                    snippet: "Ao longo dos séculos, Mentávia teve diversas bandeiras, muitas delas refletindo as...",
+                    keywords: ["mentavia", "bandeira"]
+                },
+                {
+                    title: "San Mârtin",
+                    image: "Flag_of_San_Martin.png",
+                    url: "San_Mârtin.html",
+                    snippet: "O San Mârtin é uma das 20 unidades federativas de Mentavia. Está localizado no...",
+                    keywords: ["san mârtin", "estado"]
+                },                
+                {
+                    title: "Império das Duas Espadas",
+                    image: "imperio_duas_espadas.png",
+                    url: "Império_das_Duas_Espadas.html",
+                    snippet: "Império das Duas Espadas é um país localizado na Ásia, com umas boas histórias...",
+                    keywords: ["império das duas espadas", "império", "ásia"]
+                },
+                {
+                    title: "Yeda",
+                    image: "Yeda_Flag.png",
+                    url: "Yeda.html",
+                    snippet: "Em 850, dois grupos rivais travavam constantes guerras até que, em um ato de coragem...",
+                    keywords: ["yeda", "tribo", "ásia"]
+                },
+                {
+                    title: "Província do Dois Montes",
+                    image: "Santa_Terra.png",
+                    url: "Província_do_Dois_Montes.html",
+                    snippet: "Por volta de 1700, o Império Duas Espadas decidiu transferir a capital do país para...",
+                    keywords: ["dois montes", "província"]
+                },
+                {
+                    title: "Província do Ace",
+                    image: "Ace.png",
+                    url: "Província_do_Ace.html",
+                    snippet: "O Ace é uma das 13 províncias do Império Duas Espadas, localizada na região Norte...",
+                    keywords: ["ace", "província"]
+                }
+            ];
+
+            // Função para pesquisar artigos
+            function searchArticles(query) {
+                if (!query) return [];
+                
+                query = query.toLowerCase();
+                return articles.filter(article => 
+                    article.title.toLowerCase().includes(query) ||
+                    article.snippet.toLowerCase().includes(query) ||
+                    article.keywords.some(keyword => keyword.toLowerCase().includes(query))
+                ).sort((a, b) => a.title.localeCompare(b.title));
+            }
+
+            // Função para exibir resultados com imagens quadradas
+            function displayResults(query) {
+                const resultsContainer = document.getElementById('resultsContainer');
+                const results = searchArticles(query);
+                
+                let html = '';
+                
+                if (query) {
+                    html += `<h2>Resultados para "${query}"</h2>`;
+                    html += `<div class="results-count">${results.length} resultados encontrados</div>`;
+                    
+                    if (results.length > 0) {
+                        results.forEach(result => {
+                            const hasImage = result.image ? '' : 'no-image';
+                            html += `
+                                <div class="search-result ${hasImage}">
+                                    ${result.image ? 
+                                        `<div class="search-result-image">
+                                            <img src="${result.image}" alt="${result.title}">
+                                        </div>` 
+                                        : ''}
+                                    <div class="search-result-content">
+                                        <a href="${result.url}">
+                                            <h3>${result.title}</h3>
+                                            <span class="url">obupedia.wiki/${result.url}</span>
+                                        </a>
+                                        <p class="snippet">${result.snippet}</p>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    } else {
+                        html += `<div class="no-results">
+                                    <p>Nenhum resultado encontrado para "${query}".</p>
+                                    <p>Sugestões:</p>
+                                    <ul>
+                                        <li>Verifique a ortografia</li>
+                                        <li>Tente termos mais gerais</li>
+                                        <li>Navegue pelo <a href="index.html">índice temático</a></li>
+                                    </ul>
+                                </div>`;
+                    }
+                    
+                    // Pesquisas relacionadas
+                    const relatedKeywords = [];
+                    articles.forEach(article => {
+                        article.keywords.forEach(keyword => {
+                            if (keyword.toLowerCase().includes(query.toLowerCase()) && !relatedKeywords.includes(keyword)) {
+                                relatedKeywords.push(keyword);
+                            }
+                        });
+                    });
+                    
+                    if (relatedKeywords.length > 0) {
+                        html += `<div class="related-searches">
+                                    <h3>Pesquisas relacionadas:</h3>
+                                    <ul>`;
+                        
+                        relatedKeywords.slice(0, 6).forEach(keyword => {
+                            html += `<li><a href="search.html?q=${encodeURIComponent(keyword)}">${keyword}</a></li>`;
+                        });
+                        
+                        html += `</ul></div>`;
+                    }
+                }
+                
+                resultsContainer.innerHTML = html;
+            }
+
+            // Configurar o formulário de pesquisa
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.getElementById('searchInput').value;
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            });
+
+            // Exibir resultados quando a página carregar
+            window.onload = function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const query = urlParams.get('q');
+                if (query) {
+                    document.getElementById('searchInput').value = query;
+                    displayResults(query);
+                }
+            };
+        </script>
+    </div>
+</body>
+</html>

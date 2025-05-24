@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="obu_ico.png" type="image/x-icon">
+    <title>Bandeiras de Mentavia - ObuPédia</title>
+    <style>
+        :root {
+            --cor-primaria: #2a4b8d;
+            --cor-secundaria: #3a6ea5;
+            --cor-texto: #222;
+            --cor-fundo: #f8f9fa;
+            --cor-borda: #a2a9b1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Liberation Sans', 'Nimbus Sans L', Arial, sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+        }
+        
+        .search-box {
+            text-align: center;
+            margin: 1.5em 0;
+            padding: 0.5em;
+        }
+        
+        .search-box input {
+            padding: 0.75em;
+            width: 65%;
+            max-width: 550px;
+            font-size: 1.05em;
+            border: 1px solid var(--cor-borda);
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            padding: 0.75em 1.5em;
+            font-size: 1.05em;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        .sib {
+            width: 30px;
+            height: 19px;
+            align-items: center;
+        }
+        
+        header {
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 1em;
+        }
+        
+        h1 {
+            font-size: 1.8em;
+            margin: 0.5em 0;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.25em;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.25em;
+            margin: 1.5em 0 0.8em;
+        }
+        
+        h3 {
+            font-size: 1.25em;
+            margin: 1.2em 0 0.5em;
+        }
+        
+        .infobox {
+            float: right;
+            clear: right;
+            margin: 0.5em 0 1.5em 1.5em;
+            padding: 0.3em;
+            border: 1px solid var(--cor-borda);
+            background-color: #f8f9fa;
+            font-size: 90%;
+            line-height: 1.5;
+            width: 300px;
+            border-collapse: collapse;
+        }
+        
+        .infobox caption {
+            font-size: 1.25em;
+            font-weight: bold;
+            padding: 0.4em;
+            text-align: center;
+            background-color: #eaf3ff;
+        }
+        
+        .infobox th, .infobox td {
+            vertical-align: top;
+            padding: 0.4em 0.6em;
+            border: 1px solid #ddd;
+        }
+        
+        .infobox th {
+            text-align: left;
+            width: 40%;
+            background-color: #f1f1f1;
+        }
+        
+        .infobox-image {
+            text-align: center;
+            padding: 0.8em;
+        }
+        
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .flag-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2em;
+            margin: 2em 0;
+        }
+        
+        .flag-card {
+            border: 1px solid var(--cor-borda);
+            border-radius: 5px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .flag-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .flag-image {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            padding: 1em;
+        }
+        
+        .flag-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .flag-info {
+            padding: 1em;
+            border-top: 1px solid var(--cor-borda);
+        }
+        
+        .flag-info h3 {
+            margin: 0 0 0.5em;
+            color: var(--cor-primaria);
+        }
+        
+        .flag-period {
+            font-style: italic;
+            color: #54595d;
+            font-size: 0.9em;
+        }
+        
+        .flag-description {
+            margin-top: 0.5em;
+            font-size: 0.95em;
+        }
+                .bandeira {
+            width: 100%;
+            max-width: 280px;
+            border: 1px solid var(--cor-borda);
+        }
+        
+        .historical-section {
+            margin-top: 3em;
+        }
+        
+        .references {
+            font-size: 90%;
+            column-count: 2;
+            column-gap: 2em;
+            margin-top: 2em;
+        }
+        
+        @media (max-width: 768px) {
+            .infobox {
+                float: none;
+                width: auto;
+                margin: 1em 0;
+            }
+            
+            .flag-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .references {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <form id="searchForm" action="search.html" method="get">
+                <input type="text" name="q" placeholder="Pesquisar na ObuPédia..." required>
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> › <a href="search.html?q=Bandeira de Mentavia">Resultados para "Bandeira de Mentavia"</a> › Bandeira de Mentavia
+        </div>
+
+
+        <header>
+            <h1>Bandeiras de Mentavia</h1>
+        </header>
+
+        <aside class="infobox">
+            <table>
+                <caption>Mentavia</caption>
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="infobox-image">
+                            <img src="Mentavia_Flag.png" alt="Bandeira de Mentavia" class="bandeira">
+                            <div><i>Tricolor</i></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Aplicação</th>
+                        <td><img src="image.png" alt="Simbologia vexilológica" class="sib"></td>
+                    </tr>
+                    <tr>
+                        <th>Proporção</th>
+                        <td>6:9</td>
+                    </tr>
+                    <tr>
+                        <th>Adoção</th>
+                        <td>15 de Março de 1918</td>
+                    </tr>
+                    <tr>
+                        <th>Cores</th>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 5px; margin: 3px 0;">
+                                <div style="width:15px; height:15px; background:#151515; border:1px solid #ddd;"></div>
+                                <span>Azul</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px; margin: 3px 0;">
+                                <div style="width:15px; height:15px; background:#FFFFFF; border:1px solid #ddd;"></div>
+                                <span>Branco</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px; margin: 3px 0;">
+                                <div style="width:15px; height:15px; background:#9E9E9E; border:1px solid #ddd;"></div>
+                                <span>Vermelho</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </aside>
+
+        <section>
+            <p>Ao longo dos séculos, <b>Mentavia</b> teve diversas bandeiras, muitas delas refletindo as mudanças de governo ou ideologias dominantes no país. Além das oficiais, também surgiram outras bandeiras não reconhecidas, muitas vezes rejeitadas pela população devido à forma como o país era governado naquele período.</p>
+        </section>
+
+        <section>
+            <h2>Bandeira Nacional Atual</h2>
+            <p>A bandeira atual de Mentavia foi adotada em 1918, após a proclamação da República Federativa. Seu desenho consiste em:</p>
+            <ul>
+                <li><strong>Tricolor vertical</strong>: Preto, branco e cinza</li>
+                <li><strong>Proporção</strong>: 6:9 (altura:largura)</li>
+            </ul>
+            <p>As cores representam:</p>
+            <ul>
+                <li><span style="color:#000000;"><b>Preto</b></span>: A lembrança de uma grande vitória</li>
+                <li><span style="color:#000000; "><b>Braco</b></span>: A conquista não esquecida pelo o povo</li>
+                <li><span style="color:#000000;"><b>Cinza</b></span>: A liderança de um novo governo</li>
+            </ul>
+        </section>
+
+        <section class="historical-section">
+            <h2>Bandeiras Históricas</h2>
+            <div class="flag-gallery">
+                <!-- Bandeira 2 -->
+                <div class="flag-card">
+                    <div class="flag-image">
+                        <img src="gra_imperio_mentavico.png" alt="Primeira Bandeira Republicana (1891-1948)"style="border:1px solid #a2a9b1;">
+                    </div>
+                    <div class="flag-info">
+                        <h3>Grã-Império Mentávico (1722-1918)</h3>
+                        <div class="flag-period">Grã Império</div>
+                        <p class="flag-description">Tricolor horizontal sem brasão, adotada após a Revolução Liberal.</p>
+                    </div>
+                </div>
+                
+                <!-- Bandeira 3 -->
+                <div class="flag-card">
+                    <div class="flag-image">
+                        <img src="mentavia_socialista.png" alt="Bandeira Socialsita (1925-1989)" style="border:1px solid #a2a9b1;">
+                    </div>
+                    <div class="flag-info">
+                        <h3>Bandeira Socialsita (1925-1989)</h3>
+                        <div class="flag-period">Regime Socialista</div>
+                        <p class="flag-description">Depois das eleições de 1924, antes dos resultados de 25, houve um golpe de estado fazendo que o socialismo já ganhace.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <section class="historical-section">
+            <h2>Bandeiras de Guerra</h2>
+            <div class="flag-gallery">
+                <!-- Bandeira 2 -->
+                <div class="flag-card">
+                    <div class="flag-image">
+                        <img src="War_Flag_of_Mentavia.png" alt="Bandeira de Guerra"style="border:1px solid #a2a9b1;">
+                    </div>
+                    <div class="flag-info">
+                        <h3>Bandeira de Guerra/Militar (Uso de guerra na terra)</h3>
+                        <div class="flag-period">1º e 2º República Mentávica</div>
+                        <p class="flag-description">Adotada em 1921, esta bandeira foi utilizada pelas Forças Armadas Mentávicas (FAM).</p>
+                    </div>
+                </div>
+                
+                <!-- Bandeira 3 -->
+                <div class="flag-card">
+                    <div class="flag-image">
+                        <img src="Marinha_de_Mentavia.png" alt="FMMs" style="border:1px solid #a2a9b1;">
+                    </div>
+                    <div class="flag-info">
+                        <h3>Bandeira da Marinha (Uso de guerra na água)</h3>
+                        <div class="flag-period">1º e 2º República Mentávica</div>
+                        <p class="flag-description">Essa bandeira foi adotada em 1919, quando Mentavia já demonstrava — e ainda demonstra — um forte foco em sua marinha. No leste do país, surgiu um projeto marítimo idealizado pelo presidente de Mentavia, que também criou a bandeira naval como símbolo dessa iniciativa. E depois foi reconhecida como Forças Marítimas Mentávicas (FMM's)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Protocolo e Uso</h2>
+            <p>O proibimento de mudanças na bandeira depois da república federativa (Lei nº 1918/15):</p>
+            <ul>
+                <li>Se o país for mudar sua ideologia depois de eleições, cirei uma ao regime</li>
+                <li>A bandeira somente é mudada quando a escolha de um novo governo decidir</li>
+                <li>Proibição de símbolos que pode representar o país, mas as cores na bandeira já diz o que nos passamos até aqui</li>
+            </ul>
+        </section>
+
+        <section class="references">
+            <h2>Referências</h2>
+            <ol>
+                <li>Ministério da Cultura de Mentavia. (2020). <i>Manual dos Símbolos Nacionais</i>. Editora Nacional.</li>
+                <li>Instituto Histórico Mentaviano. (2015). <i>Evolução da Simbologia Nacional</i>. Coleção História Visual, vol. 12.</li>
+                <li>Assembleia Constituinte. (1948). <i>Constituição da República Federativa de Mentavia</i>. Artigo 14º.</li>
+            </ol>
+        </section>
+
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.querySelector('input[name="q"]').value;
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            });
+        </script>
+    </div>
+</body>
+</html>

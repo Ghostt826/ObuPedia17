@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dois Montes - ObuPédia</title>
+    <link rel="icon" href="obu_ico.png" type="image/x-icon">
+    <style>
+        :root {
+            --cor-primaria: #2a4b8d;
+            --cor-secundaria: #3a6ea5;
+            --cor-texto: #222;
+            --cor-fundo: #f8f9fa;
+            --cor-borda: #a2a9b1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Liberation Sans', 'Nimbus Sans L', Arial, sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+            color: var(--cor-texto);
+            background-color: var(--cor-fundo);
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 1.5em;
+        }
+        
+        .search-box {
+            text-align: center;
+            margin: 1.5em 0;
+            padding: 0.5em;
+        }
+        
+        .search-box input {
+            padding: 0.75em;
+            width: 65%;
+            max-width: 550px;
+            font-size: 1.05em;
+            border: 1px solid var(--cor-borda);
+            border-radius: 3px;
+        }
+        
+        .search-box button {
+            padding: 0.75em 1.5em;
+            font-size: 1.05em;
+            background-color: var(--cor-primaria);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--cor-secundaria);
+        }
+        
+        header {
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 1em;
+            margin-bottom: 1.5em;
+        }
+        
+        h1 {
+            font-size: 1.9em;
+            margin: 0.5em 0 0.3em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.3em;
+            color: #000;
+            font-weight: 400;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--cor-borda);
+            padding-bottom: 0.25em;
+            margin: 1.5em 0 0.8em;
+            font-weight: 500;
+        }
+        
+        h3 {
+            font-size: 1.25em;
+            margin: 1.2em 0 0.5em;
+        }
+        
+        .infobox {
+            float: right;
+            clear: right;
+            margin: 0.5em 0 1.5em 1.5em;
+            padding: 0.3em;
+            border: 1px solid var(--cor-borda);
+            background-color: #f8f9fa;
+            font-size: 90%;
+            line-height: 1.5;
+            width: 300px;
+            border-collapse: collapse;
+        }
+        
+        .infobox caption {
+            font-size: 1.25em;
+            font-weight: bold;
+            padding: 0.4em;
+            text-align: center;
+            background-color: #eaf3ff;
+        }
+        
+        .infobox th, .infobox td {
+            vertical-align: top;
+            padding: 0.4em 0.6em;
+            border: 1px solid #ddd;
+        }
+        
+        .infobox th {
+            text-align: left;
+            width: 40%;
+            background-color: #f1f1f1;
+        }
+        
+        .infobox-image {
+            text-align: center;
+            padding: 0.8em;
+        }
+        
+        .infobox-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .bandeira {
+            width: 100%;
+            max-width: 280px;
+            border: 1px solid var(--cor-borda);
+        }
+        
+        .toc {
+            display: table;
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 0.8em 1.2em;
+            margin: 1em 0 1em 1.5em;
+            float: right;
+            clear: right;
+            width: 22em;
+        }
+        
+        .toc-title {
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            padding-left: 1.2em;
+            margin: 0.4em 0;
+        }
+        
+        .toc ul ul {
+            padding-left: 1.8em;
+        }
+        
+        .toc li {
+            margin: 0.4em 0;
+            line-height: 1.4;
+        }
+
+        a       {
+            text-decoration: none;
+            color: var(--cor-primaria); /* Mantendo a cor consistente */
+            }
+        
+        .breadcrumb {
+            margin-bottom: 1.2em;
+            font-size: 0.92em;
+            color: #54595d;
+            padding: 0.3em 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--cor-primaria);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        p {
+            margin: 0.5em 0 1em;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        
+        ul, ol {
+            margin: 0.5em 0 1.5em;
+            padding-left: 2em;
+        }
+        
+        li {
+            margin-bottom: 0.4em;
+        }
+        
+        /* Estilos para as referências */
+        #referencias {
+            margin-top: 2em;
+            padding-top: 1em;
+            border-top: 1px solid var(--cor-borda);
+        }
+        
+        .references {
+            font-size: 90%;
+            column-count: 2;
+            column-gap: 2.5em;
+            margin-top: 1em;
+        }
+        
+        .references h3 {
+            font-size: 1.1em;
+            margin: 1em 0 0.5em;
+            column-span: all;
+        }
+        
+        .references li {
+            break-inside: avoid;
+            margin-bottom: 0.7em;
+            padding-right: 1em;
+        }
+        
+        .mw-cite-backlink {
+            font-weight: bold;
+            margin-right: 0.3em;
+            font-size: 0.9em;
+        }
+        
+        .reference-text {
+            vertical-align: top;
+        }
+        
+        sup.reference {
+            font-size: 85%;
+            line-height: 1;
+        }
+        
+        /* Cards de economia */
+        .economy-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2em;
+            margin: 1.5em 0;
+        }
+        
+        .economy-card {
+            flex: 1 1 250px;
+            background: #f8f9fa;
+            border: 1px solid var(--cor-borda);
+            padding: 1.2em;
+            border-radius: 4px;
+        }
+        
+        .economy-card h3 {
+            margin-top: 0;
+            color: var(--cor-primaria);
+            font-size: 1.1em;
+        }
+        
+        .economy-card p {
+            margin: 0.5em 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .infobox, .toc {
+                float: none;
+                width: auto;
+                margin: 1em 0;
+            }
+            
+            .references {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <form id="searchForm" action="search.html" method="get">
+                <input type="text" name="q" placeholder="Pesquisar na ObuPédia..." required>
+                <button type="submit">Pesquisar</button>
+            </form>
+        </div>
+
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> › <a href="search.html?q=Dois Montes">Resultados para "Dois Montes"</a> › Dois Montes
+        </div>
+
+        <header>
+            <h1>Dois Montes</h1>
+        </header>
+
+        <aside class="infobox">
+            <table>
+                <caption>Província do Dois Montes</caption>
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="infobox-image">
+                            <img src="Santa_Terra.png" alt="Bandeira de Mentavia" class="bandeira">
+                            <div>Bandeira</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Capital:</th>
+                        <td>Monte-Nautar</td>
+                    </tr>
+                    <tr>
+                        <th>Maior cidade:</th>
+                        <td>Monte-Nautar</td>
+                    </tr>
+                    <tr>
+                        <th>Línguas oficiais:</th>
+                        <td>Espadan (LE)</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo:</th>
+                        <td>Monarquia constitucional</td>
+                    </tr>
+                    <tr>
+                        <th>Primeiro-Ministro:</th>
+                        <td>Sem Informação</td>
+                    </tr>
+                    <tr>
+                        <th>Área total:</th>
+                        <td>52,8 Mil km²</td>
+                    </tr>
+                    <tr>
+                        <th>População:</th>
+                        <td>≈ 25 000 hab. (12º)</td>
+                    </tr>
+                    <tr>
+                        <th>PIB total:</th>
+                        <td>REE$ 803 500 000</td>
+                    </tr>
+                    <tr>
+                        <th>PIB per capita:</th>
+                        <td>REE$ 32 140</td>
+                    </tr>
+                </tbody>
+            </table>
+        </aside>
+
+        <section>
+            <p>O <b>Dois Montes</b> é uma das 13 províncias do <a href="Império_das_Duas_Espadas.html"><b>Império Duas Espadas</b></a>, localizada na região <b>Sul</b> do país. Faz fronteira ao norte com a província de <b>Crata</b>, sendo esta sua única divisa territorial. A província possui uma área de <b>52.800 km²</b>, e seus habitantes são chamados de <b>Montesianos</b>. <p>A capital de Dois Montes é <b>Monte-Nautar</b>, e a província é composta por <b>11 municípios: Campina, Copacatana, Vintiana, Vienas, Valmitar, Monte-Nautar, Goinata, Anapolândia, Polana, Vantiana</b> e <b>Catarana</b>. <p>.Dois Montes surgiu a partir das <b>expansões espadanas</b>, sendo fortemente influenciada pelo crescimento territorial do império. A <b>agricultura</b> e a exploração de <b>petróleo</b> foram os principais motores do desenvolvimento econômico da província ao longo dos anos.</p>
+        </section>
+
+        <section id="historia">
+            <h2>História</h2>
+            <p><b>Por volta de 1700</b>, o <b>Império Duas Espadas</b> decidiu transferir a capital do país para a província de <b>Dois Montes</b>, onde havia uma vasta área plana ideal para a construção de uma nova capital. A região também era cercada por montanhas, o que a tornava estrategicamente perfeita para a proteção do monarca e do império. <p>A construção da nova capital foi iniciada e concluída em <b>1705</b>. Após sua conclusão, a cidade atraiu muitos imigrantes e cidadãos de outras partes do país, tornando-se rapidamente uma região próspera. As principais atividades econômicas da capital eram: <b>12% agricultura, 87% pesca e 21% mineração de carvão</b>. Cerca de <b>96 anos depois</b>, foi descoberta uma rica fonte de <b>petróleo</b> na região. <p><b>Dois Montes</b> permaneceu como capital oficial do Império por <b>115 anos</b>, até ser substituída por <b>Escovia</b>, uma nova capital criada para atender melhor às crescentes necessidades do Império. <p>Atualmente, a província de Dois Montes mantém sua relevância principalmente graças à exploração de <b>petróleo</b>, <b>carvão</b> e à <b>pecuária</b>. Sua população média é de aproximadamente <b>25 Mil habitantes</b>, ocupando o <b>12º lugar</b> no ranking populacional nacional. O <b>PIB per capita</b> é de cerca de <b>$34.140 REE</b>, o que a coloca na <b>8ª posição</b> no ranking nacional. Com uma área de <b>52.800 km²</b>, a província também está em <b>12º lugar</b> em extensão territorial. O <b>IDH</b> (Índice de Desenvolvimento Humano) de Dois Montes é de <b>0,790</b>, valor considerado <b>alto</b>, posicionando-a na <b>11ª colocação nacional</b>.</p>
+        </section>
+        
+        <script>
+            document.getElementById('searchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = document.querySelector('input[name="q"]').value;
+                window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+            });
+        </script>
+    </div>
+</body>
+</html>
